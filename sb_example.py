@@ -194,6 +194,3 @@ expert_returns = evaluate(expert_agent)
 labels = ['null', 'ppo', 'expert']
 returns = [null_returns, ppo_returns, expert_returns]
 plot_results(labels, returns)
-
-# Cleanup
-env.close()

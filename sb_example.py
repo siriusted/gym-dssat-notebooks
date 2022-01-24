@@ -2,9 +2,6 @@ import gym
 import gym_dssat_pdi
 import torch
 import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 from stable_baselines3 import PPO
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.monitor import Monitor
@@ -172,18 +169,6 @@ def evaluate(agent, n_episodes=10):
 
     return returns
 
-def plot_results(labels, returns):
-    data_dict = {}
-    for label, data in zip(labels, returns):
-        data_dict[label] = data
-    df = pd.DataFrame(data_dict)
-    
-    ax = sns.boxplot(data=df)
-    ax.set_xlabel("policy")
-    ax.set_ylabel("evaluation output")
-    plt.savefig('results.pdf')
-    plt.show()
-
 # evaluate agents
 null_agent = NullAgent(env)
 print('Evaluating Null agent...')
@@ -199,7 +184,10 @@ print('Evaluating Expert agent...')
 expert_returns = evaluate(expert_agent)
 print('Done')
 
-# display results
-labels = ['null', 'ppo', 'expert']
-returns = [null_returns, ppo_returns, expert_returns]
-plot_results(labels, returns)
+# write results to a file to be loaded for display
+data = [('null', null_returns), ('ppo', ppo_returns), ('expert', expert_returns)]
+with open("results.pkl", "wb") as result_file:
+    pickle.dump(data, result_file)
+
+# Cleanup
+env.close()

@@ -1,5 +1,6 @@
 import gym
 import gym_dssat_pdi
+import pickle
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -55,19 +56,6 @@ def evaluate(policy, n_episodes=10):
 
     return returns
 
-def plot_results(labels, returns):
-    data_dict = {}
-    for label, data in zip(labels, returns):
-        data_dict[label] = data
-    df = pd.DataFrame(data_dict)
-    
-    ax = sns.boxplot(data=df)
-    ax.set_xlabel("policy")
-    ax.set_ylabel("evaluation output")
-    plt.savefig('results.pdf')
-    plt.show()
-
-
 # Evaluate null policy
 print('Evaluating null policy...')
 null_returns = evaluate(null_policy)
@@ -78,7 +66,10 @@ print('Evaluating expert policy...')
 expert_returns = evaluate(expert_policy)
 print('Done')
 
-# Display results and save a copy as `results.pdf` in the current working directory
-labels = ['null', 'expert']
-returns = [null_returns, expert_returns]
-plot_results(labels, returns)
+# write results to a file to be loaded for display
+data = [('null', null_returns), ('expert', expert_returns)]
+with open("results.pkl", "wb") as result_file:
+    pickle.dump(data, result_file)
+
+# Cleanup
+env.close()

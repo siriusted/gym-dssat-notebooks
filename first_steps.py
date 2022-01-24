@@ -1,9 +1,6 @@
 import gym
 import gym_dssat_pdi
 import pickle
-import seaborn as sns
-import pandas as pd
-import matplotlib.pyplot as plt
 
 # First, we instantiate the environment. Here, we will use the fertilization mode..
 env_args = {

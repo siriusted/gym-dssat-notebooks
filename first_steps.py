@@ -69,10 +69,14 @@ def plot_results(labels, returns):
 
 
 # Evaluate null policy
+print('Evaluating null policy...')
 null_returns = evaluate(null_policy)
+print('Done')
 
 # Evaluate expert policy
+print('Evaluating expert policy...')
 expert_returns = evaluate(expert_policy)
+print('Done')
 
 # Display results and save a copy as `results.pdf` in the current working directory
 labels = ['null', 'expert']

@@ -7,6 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from stable_baselines3 import PPO
 from stable_baselines3.common.evaluation import evaluate_policy
+from stable_baselines3.common.monitor import Monitor
 
 # helpers for action normalization
 def normalize_action(action_space_limits, action):

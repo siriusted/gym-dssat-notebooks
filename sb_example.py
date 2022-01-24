@@ -112,7 +112,9 @@ ppo_args = {
 ppo_agent = PPO('MlpPolicy', env, **ppo_args)
 
 # Train for 40k timesteps
+print('Training PPO agent...')
 ppo_agent.learn(total_timesteps=40_000)
+print('Training done')
 
 # Baseline agents for comparison
 class NullAgent:
@@ -184,12 +186,18 @@ def plot_results(labels, returns):
 
 # evaluate agents
 null_agent = NullAgent(env)
+print('Evaluating Null agent...')
 null_returns = evaluate(null_agent)
+print('Done')
 
+print('Evaluating PPO agent...')
 ppo_returns = evaluate(ppo_agent)
+print('Done')
 
 expert_agent = ExpertAgent(env)
+print('Evaluating Expert agent...')
 expert_returns = evaluate(expert_agent)
+print('Done')
 
 # display results
 labels = ['null', 'ppo', 'expert']

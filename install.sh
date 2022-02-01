@@ -62,10 +62,4 @@ cd ../gym-dssat-pdi/ && pip install -e . &> /dev/null
 echo "Done"
 echo
 
-echo "Installing stable-baselines3..."
-# install stable-baselines3
-pip install stable-baselines3[extra] &> /dev/null
-echo "Done."
-echo 
-
 echo "Installation procedure completed!"

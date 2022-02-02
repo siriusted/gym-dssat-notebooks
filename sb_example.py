@@ -188,6 +188,7 @@ custom_objects = {
 
 print('Evaluating pretrained PPO agent...')
 ppo_pretrained_returns = evaluate(PPO.load('./pretrained_model', custom_objects=custom_objects))
+print('Done')
 
 expert_agent = ExpertAgent(env)
 print('Evaluating Expert agent...')

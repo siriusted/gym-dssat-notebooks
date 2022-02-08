@@ -100,7 +100,7 @@ ppo_agent = PPO('MlpPolicy', env, **ppo_args)
 
 # Train for 500k timesteps
 print('Training PPO agent...')
-ppo_agent.learn(total_timesteps=500_000)
+ppo_agent.learn(total_timesteps=200_000)
 print('Training done')
 
 # Baseline agents for comparison
@@ -174,7 +174,7 @@ expert_returns = evaluate(expert_agent)
 print('Done')
 
 # write results to a file to be loaded for display
-data = [('null', null_returns), ('ppo', ppo_returns), ('ppo_pretrained', ppo_pretrained_returns), ('expert', expert_returns)]
+data = [('null', null_returns), ('ppo', ppo_returns), ('expert', expert_returns)]
 with open("results.pkl", "wb") as result_file:
     pickle.dump(data, result_file)
 

@@ -92,26 +92,15 @@ env = GymDssatWrapper(gym.make('GymDssatPdi-v0', **env_args))
 
 # Training arguments for PPO agent
 ppo_args = {
-    'batch_size': 128,
-    'n_steps': 256,
-    'gamma': 0.95,
-    'learning_rate': 0.003,
-    'clip_range': 0.1,
-    'n_epochs': 20,
-    'policy_kwargs': dict(
-        net_arch=[dict(pi=[64, 64], vf=[64, 64])],
-        activation_fn=torch.nn.Tanh,
-        ortho_init=False,
-    ),
-    'seed': 123,
+    'seed': 123, # seed training for reproducibility
 }
 
 # Create the agent
 ppo_agent = PPO('MlpPolicy', env, **ppo_args)
 
-# Train for 40k timesteps
+# Train for 500k timesteps
 print('Training PPO agent...')
-ppo_agent.learn(total_timesteps=40_000)
+ppo_agent.learn(total_timesteps=500_000)
 print('Training done')
 
 # Baseline agents for comparison

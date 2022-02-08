@@ -168,17 +168,6 @@ print('Evaluating PPO agent...')
 ppo_returns = evaluate(ppo_agent)
 print('Done')
 
-# custom objects for comptability between models trained and saved across python versions
-# see https://github.com/DLR-RM/stable-baselines3/pull/336
-custom_objects = {
-    "lr_schedule": lambda _: 0.0,
-    "clip_range": lambda _: 0.0
-}
-
-print('Evaluating pretrained PPO agent...')
-ppo_pretrained_returns = evaluate(PPO.load('./pretrained_model', custom_objects=custom_objects))
-print('Done')
-
 expert_agent = ExpertAgent(env)
 print('Evaluating Expert agent...')
 expert_returns = evaluate(expert_agent)

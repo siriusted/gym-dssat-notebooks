@@ -13,7 +13,7 @@ cd ../
 # only need gym==0.18.3, pyyaml > 5.1
 pip install gym==0.18.3 &> /dev/null
 pip install -U PyYAML &> /dev/null
-pip install pickle5 &> /dev/null
+pip install --upgrade --quiet cloudpickle pickle5 &> /dev/null
 echo "Done"
 echo
 echo "Installing pdi..."

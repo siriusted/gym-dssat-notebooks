@@ -98,9 +98,9 @@ ppo_args = {
 # Create the agent
 ppo_agent = PPO('MlpPolicy', env, **ppo_args)
 
-# Train for 500k timesteps
+# Train for 350k timesteps
 print('Training PPO agent...')
-ppo_agent.learn(total_timesteps=500_000)
+ppo_agent.learn(total_timesteps=350_000)
 print('Training done')
 
 # Baseline agents for comparison
